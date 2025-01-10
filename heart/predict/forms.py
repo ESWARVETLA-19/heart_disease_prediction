@@ -22,7 +22,7 @@ class HeartDiseaseForm(forms.Form):
 
     sex = forms.ChoiceField(
         label="Sex",
-        choices=[('male', 'Male'), ('female', 'Female')],
+        choices=[('1', 'Male'), ('0', 'Female')],  
         widget=forms.RadioSelect(attrs={
             'class': 'radio',
             'required': True,
