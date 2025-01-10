@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction Application</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 20px; padding: 20px; background-color: #fff;">
+    <h1 style="text-align: center; color: red; font-weight: bold;">Heart Disease Prediction Application</h1>
+    <form method="POST" action="{% url 'heart_disease_form' %}" style="max-width: 600px; margin: 0 auto; padding: 20px; background:#f0fbfc; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <label for="fullname" style="display: block; margin-bottom: 10px; font-weight: bold;">Full Name:</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Enter your name" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="dob" style="display: block; margin-bottom: 10px; font-weight: bold;">AGE</label>
+        <input type="text" id="dob" name="dob" placeholder="Enter Your Age" style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label style="display: block; margin-bottom: 10px; font-weight: bold;">Sex:</label>
+        <div class="radio-group" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+            <label><input type="radio" name="sex" value="male" required style="accent-color: #008893;"> Male</label>
+            <label><input type="radio" name="sex" value="female" style="accent-color: #008893;"> Female</label>
+        </div>
+
+        <label for="chest-pain" style="display: block; margin-bottom: 10px; font-weight: bold;">Chest Pain Type:</label>
+        <select id="chest-pain" name="chest-pain" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+            <option value="0">Typical Angina</option>
+            <option value="1">Atypical Angina</option>
+            <option value="2">Nonanginal Pain</option>
+            <option value="3">Asymptomatic</option>
+        </select>
+
+        <label for="resting-bp" style="display: block; margin-bottom: 10px; font-weight: bold;">Resting BP:</label>
+        <input type="number" id="resting-bp" name="resting-bp" step="0.01" placeholder="Enter value" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="cholesterol" style="display: block; margin-bottom: 10px; font-weight: bold;">Serum Cholesterol (mg/dl):</label>
+        <input type="number" id="cholesterol" name="cholesterol" step="0.01" placeholder="Enter value" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label style="display: block; margin-bottom: 10px; font-weight: bold;"><input type="checkbox" name="fasting-blood-sugar" style="transform: scale(1.5); accent-color:#008893"> Fasting blood sugar > 120 mg/dl</label>
+        <label style="display: block; margin-bottom: 10px; font-weight: bold;"><input type="checkbox" name="fasting-blood-sugar" style="transform: scale(1.5); accent-color:#008893"> Exercise induced Angina</label>
+
+        <label for="ecg" style="display: block; margin-bottom: 10px; font-weight: bold;">Resting Electrocardiograph Result:</label>
+        <select id="ecg" name="ecg" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+            <option value="0">Normal</option>
+            <option value="1">ST-T wave abnormality</option>
+            <option value="2">Left ventricular hypertrophy</option>
+        </select>
+
+        <label for="max-heart-rate" style="display: block; margin-bottom: 10px; font-weight: bold;">Maximum Heart Rate Achieved:</label>
+        <input type="number" id="max-heart-rate" name="max-heart-rate" step="0.01" placeholder="Enter value" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="old-peak" style="display: block; margin-bottom: 10px; font-weight: bold;">Old Peak:</label>
+        <input type="number" id="old-peak" name="old-peak" step="0.01" placeholder="Enter value" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="slope" style="display: block; margin-bottom: 10px; font-weight: bold;">Slope of the Peak Exercise ST Segment:</label>
+        <select id="slope" name="slope" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+            <option value="0">Up Sloping</option>
+            <option value="1">Flat</option>
+            <option value="2">Down Sloping</option>
+        </select>
+
+        <label for="vessels" style="display: block; margin-bottom: 10px; font-weight: bold;">Number of Major Vessels (0-3):</label>
+        <input type="number" id="vessels" name="vessels" min="0" max="3" placeholder="Enter value" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="thal" style="display: block; margin-bottom: 10px; font-weight: bold;">Thal Value:</label>
+        <select id="thal" name="thal" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+            <option value="0">Negative</option>
+    <option value="1">Positive</option>
+    <option value="2">In conclusive</option>
+        </select>
+
+        <button type="submit" style="width: 100%; padding: 10px; background-color: #008893; color: white; border: none; border-radius: 5px; cursor: pointer;">Diagnosis Test Result</button>
+    </form>
+
+    <!-- <footer style="text-align: center; margin-top: 20px; color: gray;">
+        &copy; 2024 Heart Disease Prediction System. All rights reserved.
+    </footer> -->
+</body>
+</html>

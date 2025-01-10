@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+        }
+        h1 {
+            text-align: center;
+            color: red;
+            font-weight: bold;
+        }
+        .result-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0fbfc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .result-container p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .result-container b {
+            color: #008893;
+        }
+    </style>
+</head>
+<body>
+    <h1>Heart Disease Prediction Result</h1>
+    <div class="result-container">
+        <p><b>Full Name:</b> {{ result_data.fullname }}</p>
+        <p><b>Age:</b> {{ result_data.age }}</p>
+        <p><b>Sex:</b> {{ result_data.sex }}</p>
+        <p><b>Chest Pain Type:</b> {{ result_data.chest_pain }}</p>
+        <p><b>Resting BP:</b> {{ result_data.resting_bp }}</p>
+        <p><b>Serum Cholesterol:</b> {{ result_data.cholesterol }} mg/dl</p>
+        <p><b>Fasting Blood Sugar > 120 mg/dl:</b> {{ result_data.fasting_blood_sugar }}</p>
+        <p><b>Exercise Induced Angina:</b> {{ result_data.exercise_induced_angina }}</p>
+        <p><b>ECG Result:</b> {{ result_data.ecg }}</p>
+        <p><b>Max Heart Rate Achieved:</b> {{ result_data.max_heart_rate }}</p>
+        <p><b>Old Peak:</b> {{ result_data.old_peak }}</p>
+        <p><b>Slope of Peak Exercise ST Segment:</b> {{ result_data.slope }}</p>
+        <p><b>Number of Major Vessels:</b> {{ result_data.vessels }}</p>
+        <p><b>Thal Value:</b> {{ result_data.thal }}</p>
+        <!-- You can add more prediction result output here as needed -->
+    </div>
+</body>
+</html>
