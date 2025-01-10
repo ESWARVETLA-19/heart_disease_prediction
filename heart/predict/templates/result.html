@@ -36,21 +36,21 @@
 <body>
     <h1>Heart Disease Prediction Result</h1>
     <div class="result-container">
-        <p><b>Full Name:</b> {{ result_data.fullname }}</p>
-        <p><b>Age:</b> {{ result_data.age }}</p>
-        <p><b>Sex:</b> {{ result_data.sex }}</p>
-        <p><b>Chest Pain Type:</b> {{ result_data.chest_pain }}</p>
-        <p><b>Resting BP:</b> {{ result_data.resting_bp }}</p>
-        <p><b>Serum Cholesterol:</b> {{ result_data.cholesterol }} mg/dl</p>
-        <p><b>Fasting Blood Sugar > 120 mg/dl:</b> {{ result_data.fasting_blood_sugar }}</p>
-        <p><b>Exercise Induced Angina:</b> {{ result_data.exercise_induced_angina }}</p>
-        <p><b>ECG Result:</b> {{ result_data.ecg }}</p>
-        <p><b>Max Heart Rate Achieved:</b> {{ result_data.max_heart_rate }}</p>
-        <p><b>Old Peak:</b> {{ result_data.old_peak }}</p>
-        <p><b>Slope of Peak Exercise ST Segment:</b> {{ result_data.slope }}</p>
-        <p><b>Number of Major Vessels:</b> {{ result_data.vessels }}</p>
-        <p><b>Thal Value:</b> {{ result_data.thal }}</p>
-        <!-- You can add more prediction result output here as needed -->
+        <p><b>Full Name:</b> {{ cleaned_data.fullname }}</p>
+        <p><b>Age:</b> {{ cleaned_data.age }}</p>
+        <p><b>Sex:</b> {{ cleaned_data.sex }}</p>
+        <p><b>Chest Pain Type:</b> {{ cleaned_data.chest_pain }}</p>
+        <p><b>Resting BP:</b> {{ cleaned_data.resting_bp }}</p>
+        <p><b>Serum Cholesterol:</b> {{ cleaned_data.cholesterol }} mg/dl</p>
+        <p><b>Fasting Blood Sugar > 120 mg/dl:</b> {{ cleaned_data.fasting_blood_sugar }}</p>
+        <p><b>Exercise Induced Angina:</b> {{ cleaned_data.exercise_induced_angina }}</p>
+        <p><b>ECG Result:</b> {{ cleaned_data.ecg }}</p>
+        <p><b>Max Heart Rate Achieved:</b> {{ cleaned_data.max_heart_rate }}</p>
+        <p><b>Old Peak:</b> {{ cleaned_data.old_peak }}</p>
+        <p><b>Slope of Peak Exercise ST Segment:</b> {{ cleaned_data.slope }}</p>
+        <p><b>Number of Major Vessels:</b> {{ cleaned_data.vessels }}</p>
+        <p><b>Thal Value:</b> {{ cleaned_data.thal }}</p>
+        
     </div>
 </body>
 </html>
