@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -70,8 +70,151 @@
         <button type="submit" style="width: 100%; padding: 10px; background-color: #008893; color: white; border: none; border-radius: 5px; cursor: pointer;">Diagnosis Test Result</button>
     </form>
 
-    <!-- <footer style="text-align: center; margin-top: 20px; color: gray;">
+     <footer style="text-align: center; margin-top: 20px; color: gray;">
         &copy; 2024 Heart Disease Prediction System. All rights reserved.
-    </footer> -->
+    </footer>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction Application</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.title {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f0fbfc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.input, .select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.radio {
+    accent-color: #008893;
+}
+
+.checkbox {
+    transform: scale(1.5);
+    margin-bottom: 20px;
+    accent-color: #008893;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #008893;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <h1 class="title">Heart Disease Prediction Application</h1>
+    <form method="POST" action="{% url 'heart_disease_form' %}" class="form-container">
+        <label for="fullname" class="label">Full Name:</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Enter your name" required class="input">
+
+        <label for="dob" class="label">AGE</label>
+        <input type="text" id="dob" name="dob" placeholder="Enter Your Age" class="input">
+
+        <label class="label">Sex:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="sex" value="male" required class="radio"> Male</label>
+            <label><input type="radio" name="sex" value="female" class="radio"> Female</label>
+        </div>
+
+        <label for="chest-pain" class="label">Chest Pain Type:</label>
+        <select id="chest-pain" name="chest-pain" required class="select">
+            <option value="0">Typical Angina</option>
+            <option value="1">Atypical Angina</option>
+            <option value="2">Nonanginal Pain</option>
+            <option value="3">Asymptomatic</option>
+        </select>
+
+        <label for="resting-bp" class="label">Resting BP:</label>
+        <input type="number" id="resting-bp" name="resting-bp" step="0.01" placeholder="Enter value" required class="input">
+
+        <label for="cholesterol" class="label">Serum Cholesterol (mg/dl):</label>
+        <input type="number" id="cholesterol" name="cholesterol" step="0.01" placeholder="Enter value" required class="input">
+
+        <label><input type="checkbox" name="fasting-blood-sugar" class="checkbox"> Fasting blood sugar > 120 mg/dl</label><br>
+        <label><input type="checkbox" name="fasting-blood-sugar" class="checkbox"> Exercise induced Angina</label>
+
+        <label for="ecg" class="label">Resting Electrocardiograph Result:</label>
+        <select id="ecg" name="ecg" required class="select">
+            <option value="0">Normal</option>
+            <option value="1">ST-T wave abnormality</option>
+            <option value="2">Left ventricular hypertrophy</option>
+        </select>
+
+        <label for="max-heart-rate" class="label">Maximum Heart Rate Achieved:</label>
+        <input type="number" id="max-heart-rate" name="max-heart-rate" step="0.01" placeholder="Enter value" required class="input">
+
+        <label for="old-peak" class="label">Old Peak:</label>
+        <input type="number" id="old-peak" name="old-peak" step="0.01" placeholder="Enter value" required class="input">
+
+        <label for="slope" class="label">Slope of the Peak Exercise ST Segment:</label>
+        <select id="slope" name="slope" required class="select">
+            <option value="0">Up Sloping</option>
+            <option value="1">Flat</option>
+            <option value="2">Down Sloping</option>
+        </select>
+
+        <label for="vessels" class="label">Number of Major Vessels (0-3):</label>
+        <input type="number" id="vessels" name="vessels" min="0" max="3" placeholder="Enter value" required class="input">
+
+        <label for="thal" class="label">Thal Value:</label>
+        <select id="thal" name="thal" required class="select">
+            <option value="0">Negative</option>
+            <option value="1">Positive</option>
+            <option value="2">In conclusive</option>
+        </select>
+
+        <button type="submit" class="submit-button">Diagnosis Test Result</button>
+    </form>
 </body>
 </html>
+
