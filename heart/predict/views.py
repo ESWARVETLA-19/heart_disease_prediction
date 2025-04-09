@@ -79,8 +79,8 @@ from .forms import HeartDiseaseForm
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Define correct paths for the model and scaler (outside `prediction/`)
-model_path = os.path.join(BASE_DIR, "testxgb_model.pkl")
-scaler_path = os.path.join(BASE_DIR, "testscaler.pkl")
+model_path = os.path.join(BASE_DIR, "finalxgb_model.pkl")
+scaler_path = os.path.join(BASE_DIR, "finalscaler.pkl")
 
 # Load the trained model and scaler
 trained_model, scaler = None, None
