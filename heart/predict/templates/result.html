@@ -17,7 +17,7 @@
             font-weight: bold;
         }
         .result-container {
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
             padding: 20px;
             background: #f0fbfc;
@@ -38,8 +38,15 @@
             color: white;
             border: none;
             border-radius: 5px;
+            text-decoration: none;
             cursor: pointer;
+            
         } 
+        .buttons {
+            display: flex;
+            gap: 50px; 
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -60,10 +67,20 @@
         <p><b>Number of Major Vessels:</b> {{ cleaned_data.vessels }}</p>
         <p><b>Thal Value:</b> {{ cleaned_data.thal }}</p>
         <p><b>Target:</b>{{prediction}}</p>
-        <form method="POST" action="{% url 'generate_pdf' %}">
-            {% csrf_token %}
-            <button type="submit" class="submit-button">Download Test Result</button>
-        </form> 
+       <div class="buttons">
+        <span>
+            <a href="javascript:history.back()" class="submit-button" style="text-decoration: none;  margin-left:90px; padding:10px 30px 10px 30px;">Back</a>
+        </span>
+        
+        <span>
+            <form method="POST" action="{% url 'generate_pdf' %}">
+        {% csrf_token %}
+        <button type="submit" class="submit-button">Download Test Result</button>
+    </form> 
+</span>
     </div>
+        
+    </div>
+    
 </body>
 </html>
