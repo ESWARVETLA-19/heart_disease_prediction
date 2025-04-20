@@ -1,71 +1,3 @@
-# from django.shortcuts import render
-# from django.http import HttpResponse
-# from .forms import HeartDiseaseForm
-# from django.views.decorators.csrf import csrf_exempt
-# import pickle
-# import numpy as np
-
-# @csrf_exempt 
-# def heart_disease_form(request):
-#     if request.method == 'POST':
-#         form = HeartDiseaseForm(request.POST)
-#         if form.is_valid():
-#             cleaned_data = form.cleaned_data
-#             fullname = cleaned_data.get('fullname')
-            
-#             age = cleaned_data.get('age')
-#             sex = cleaned_data.get('sex')
-#             chest_pain = cleaned_data.get('chest_pain')
-#             resting_bp = cleaned_data.get('resting_bp')
-#             cholesterol = cleaned_data.get('cholesterol')
-#             fasting_blood_sugar = cleaned_data.get('fasting_blood_sugar')
-#             exercise_induced_angina = cleaned_data.get('exercise_induced_angina')
-#             ecg = cleaned_data.get('ecg')
-#             max_heart_rate = cleaned_data.get('max_heart_rate')
-#             old_peak = cleaned_data.get('old_peak')
-#             slope = cleaned_data.get('slope')
-#             vessels = cleaned_data.get('vessels')
-#             thal = cleaned_data.get('thal')
-            
-        
-#             features = [
-#                 float(age), 
-#                 float(sex), 
-#                 float(chest_pain), 
-#                 float(resting_bp), 
-#                 float(cholesterol), 
-#                 float(fasting_blood_sugar), 
-#                 float(ecg), 
-#                 float(max_heart_rate), 
-#                 float(exercise_induced_angina), 
-#                 float(old_peak), 
-#                 float(slope), 
-#                 float(vessels), 
-#                 float(thal)
-#             ]
-                                
-
-#             print(sex)      
-#             print(features) 
-#             input_data_array = np.asarray(features, dtype=np.float64)
-#             input_array=input_data_array.reshape(1, -1) 
-#             try:
-#                 with open('trained_model.pkl', 'rb') as file:
-#                     pickle_data = pickle.load(file)
-#                     data=pickle_data.predict(input_array) 
-#             except Exception as e:
-#                 pickle_data = {'error': str(e)}
-
-            
-#             return render(request, 'result.html', {
-#                 'cleaned_data': cleaned_data,
-#                 'pickle_data': pickle_data
-#             })
-
-#     else:
-#         form = HeartDiseaseForm()
-
-#     return render(request, 'index.html', {'form': form}) 
 
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -74,13 +6,15 @@ import pickle
 import numpy as np
 import os
 from .forms import HeartDiseaseForm
+from xhtml2pdf import pisa
+from django.template.loader import get_template
 
 # Get the BASE directory (Root Django Project Folder)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Define correct paths for the model and scaler (outside `prediction/`)
-model_path = os.path.join(BASE_DIR, "xgb_model.pkl")
-scaler_path = os.path.join(BASE_DIR, "scaler.pkl")
+model_path = os.path.join(BASE_DIR, "finalxgb_model.pkl")
+scaler_path = os.path.join(BASE_DIR, "finalscaler.pkl")
 
 # Load the trained model and scaler
 trained_model, scaler = None, None
@@ -135,14 +69,50 @@ def heart_disease_form(request):
 
             except Exception as e:
                 return JsonResponse({"error": f"Prediction error: {str(e)}"}, status=500)
+            
+            request.session["cleaned_data"] = cleaned_data
+            request.session["prediction"] = "High Risk" if prediction == 1 else "Low Risk"
 
             return render(request, "result.html", { 
                 "cleaned_data":cleaned_data,
                 "prediction": "High Risk" if prediction == 1 else "Low Risk"
             })
-
+  
+            
     else:
         form = HeartDiseaseForm()
 
     return render(request, "index.html", {"form": form}) 
  
+
+#pdf Generator
+
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+import io
+from django.http import HttpResponse
+
+def generate_pdf(request):
+    cleaned_data = request.session.get("cleaned_data")
+    prediction = request.session.get("prediction")
+
+    if not cleaned_data or not prediction:
+        return HttpResponse("No data available for PDF generation.", status=400)
+
+
+
+    context = {
+        "cleaned_data": cleaned_data,
+        "prediction": prediction,
+    }
+
+    template = get_template("downloadpdf.html")
+    html = template.render(context)
+    result = io.BytesIO()
+    pdf = pisa.pisaDocument(io.BytesIO(html.encode("utf-8")), result)
+
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type="application/pdf")
+    return HttpResponse("Error generating PDF", status=500)
+
+
