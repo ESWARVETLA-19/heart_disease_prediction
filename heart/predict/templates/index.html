@@ -19,7 +19,7 @@
 }
 
 .form-container {
-    max-width: 600px;
+    max-width: 570px;
     margin: 0 auto;
     padding: 20px;
     background: #f0fbfc;
@@ -59,21 +59,37 @@
 }
 
 .submit-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #008893;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-} 
+            padding: 10px 20px;
+            background-color: #008893;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
     </style>
  </head>
  <body>
     <h1 class="title">Heart Disease Prediction Application</h1>
     <form method="POST" action="{% url 'heart_disease_form' %}" class="form-container">
         {{form.as_p}}
-        <button type="submit" class="submit-button">Diagnosis Test Result</button>
+        <div class="buttons">
+            
+
+            <button type="reset" class="submit-button"  style="margin-left:60px; padding:10px 30px 10px 30px;">Clear</button>
+            <button type="submit" class="submit-button">Diagnosis Test Result</button>
+        </div>
+        
     </form> 
  </body>
  </html>
