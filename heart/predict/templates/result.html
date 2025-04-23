@@ -54,7 +54,9 @@
 </head>
 <body>
     <h1>Heart Disease Prediction Result</h1>
+
     <div class="result-container">
+
         <p><b>Full Name:</b> {{ cleaned_data.fullname }}</p>
         <p><b>Age:</b> {{ cleaned_data.age }}</p>
         <p><b>Sex:</b> {{ cleaned_data.sex }}</p>
@@ -84,9 +86,18 @@
                 </svg>
                 <span>Back</span>
             </a>
+            
+            <button type="button" onclick="downloadPDF()"  class="submit-button">Download Test Result</button>
 
-            <button type="submit" class="submit-button">Download Test Result</button>
         </div>
     </div>
 </body>
+<script>
+    function downloadPDF() {
+      const url = "{% url 'generate_pdf' %}";
+      window.location.href = url;
+    }
+  </script>
+  
+  
 </html>
